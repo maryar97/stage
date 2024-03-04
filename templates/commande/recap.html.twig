@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vérifier la commande{% endblock %}
+
+{% block body %}
+    <div class="container position-relative zindex-2 pt-5 pb-lg-5 pb-md-4 pb-2">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="h2 pb-2"> Vérifier la commande</h1>
+
+                <h3 class="fs-base fw-normal text-body text-uppercase pb-2 pb-sm-3">1.<span class="text-decoration-underline ms-1">Adresse de facturation</span></h3>
+
+                <hr />
+                {# {{dump(recapCart) }} #}
+                <h2 class="pb-2 pt-md-2 my-4 mt-lg-5">Récapitulatif de la commande
+                    <span class='fs-base fw-normal text-muted'>({{ recapCart|length }} formedeboxe)
+                    </span>
+                </h2>
+                {% set total = null %}
+                {% for formedeboxe in recapCart %}
+                    {% set total = total + (formedeboxe.formedeboxe.prix) %}
+
+                    <div class="d-sm-flex align-items-center border-top-4">
+                        <a class="d-inline-block flex-shrink-0  rounded-1 p-sm-2 p-xl-3 mb-2 mb-sm-0"></a>
+                        <img src="/image/{{ formedeboxe.formedeboxe.photo }}" width="150" height="150" alt="{{ formedeboxe.formedeboxe.photo}}">
+                        <div class="w-100 pt-1 ps-sm-4">
+                            <div class="d-block">
+                                <div class="me-3" style="position: top: 15px;">
+                                    <h3 class="h5 mb-2">
+                                        {{ formedeboxe.formedeboxe.nom }}
+                                    </h3>
+                                    <p>
+                                        {{ formedeboxe.formedeboxe.description }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="nav justify-content-end mt-n4">
+                                <a class="nav-link fs-xl p-2" href="{{ path('cart_remove', {id: formedeboxe.formedeboxe.id}) }}" data-bs-toggle="tooltip" title="Remove">
+                                    <i class="ai-trash"></i> <!-- Correction de la fermeture de la balise <i> -->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <ul class="list-unstyled py-3 mb-0">
+                    <li class="d-flex justify-content-between mb-2"> Sous-Total: <span class="fw-semibold ms-2">{{ total|number_format(2, ',', '.') }} € </span></li>
+                </ul>
+                <div class="mt-4 text-center">
+                    {% if methode =='stripe' %}
+                        {% if commande is defined %}
+                            <form method="POST" action="{{ path('payment_stripe', {reference:commande.reference}) }}">
+                                <input type='hidden' name='stripeToken' id='stripe-token-id' value="{{ commande.stripeSessionId }}">
+                                <button class="btn btn-lg btn-dark" type="submit" style="border-radius: 6px; position: relative; top: 20px;">Payer en stripe | {{ total|number_format(2, ',', '.') }}€</button>
+                            </form>
+                        {% else %}
+                            <p>La variable "commande" n'est pas définie.</p>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

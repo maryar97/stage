@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+
+{% block body %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+
+<main class="page-wrapper">
+    {% if cart|length > 0 %}
+    <div class="container position-relative  pt-5 pb-lg-5 pb-md-4 pb-2">
+        <div class="row">
+            <div class="col-lg-12  pt-1">
+                <h2>Mon panier</h2>
+                    {% set total = 0 %}  {# Initialisation de total à 0 #}
+                    {% for element in cart %}
+                        {% set formedeboxe = element.formedeboxe.nom %}
+                        {% set description = element.formedeboxe.description %}
+                        {% set total = total + element.formedeboxe.prix %}  {# Calcul du total #}
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-sm-flex align-items-center border-top py-4">
+                                        <div class="w-100 pt-1 ps-sm-4">
+                                            <div class="d-flex">
+                                                <div class="card" style="width: 18rem;">
+                                                    <h3 class="h5 mb-2">{{ formedeboxe }}</h3>  {# Utilisation de formedeboxe plutôt que element.formedeboxe.nom #}
+                                                    <h4 class="h5 mb-2">{{ description }}</h4>  {# Utilisation de description plutôt que element.formedeboxe.description #}
+                                                    <h4 class="h5 mb-2">{{ element.formedeboxe.prix }}€</h4>
+                                                    <img src="/image/{{ element.formedeboxe.photo }}" alt="">
+                                                </div>
+                                                <div class="text-end ms-auto">
+                                                    <div class="fs-5 mb-2">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="ms-3 d-flex col-xl-2 col-lg-3 col-sm-4 col-6">
+                                        </div>
+                                        <div class="nav d-flex justify-content-end col-xl-9 col-lg-8 col-sm-7 col-6">
+                                            <a href="{{ path('cart_remove', {'id': element.formedeboxe.id}) }}" class="nav-link" data-bs-toggle="tooltip" title="Remove">  {# Correction de la syntaxe de path #}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="d-flex align-items-center justify-content-between border-top fs-xl pt-4">Total:<span class="fs-3 fw-semibold text-dark ms-2">{{ total|number_format(2, ',', '.') }}€</span></div>
+                    <a href="{{path('order_create') }}" class="btn btn-lg btn-dark w-100 w-sm-auto mt-4">Valider mon panier</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="container d-flex flex-column justify-content-center min-vh-100 py-5">
+        <div class="text-center pt-4 mt-lg-2">
+            <h1 class="display-5">Votre panier est vide</h1>
+            {# <a href="#" class="btn btn-lg btn-dark">commandez</a> #}
+        </div>
+    </div>
+    {% endif %}
+</main>
+{% endblock %}

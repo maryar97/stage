@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <title>{% block title %}AMIENS  BOXING CLUB{% endblock %}</title>
+        <link rel="icon" href="image/logoclub.jpg">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+        {% block stylesheets %}
+        <link rel="stylesheet" href="1.css">
+
+        {% endblock %}
+
+        {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src=""></script>
+        {% endblock %}
+    </head>
+    <body>
+ {% block header %}
+   
+        
+   
+    <nav class="navbar navbar-expand-xlg bg-secondary">
+  <div class="container-fluid">
+  <img src="image/logoclub.jpg" alt="" width="75px">
+    <a class="navbar-brand" href="{{path("app_accueil")}}">Amiens BC</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="{{path("app_club")}}">club
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path("app_horaire")}}">Horaire</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path("app_inscription")}}">inscription</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path("app_connexion")}}">connexion</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{path("app_formedeboxe")}}" role="button btn-dark" aria-haspopup="true" aria-expanded="false">Forme de Boxe</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{path("app_bea")}}">Boxe Educative</a>
+            <a class="dropdown-item" href="{{path('app_ba')}}">Boxe Amateur</a>
+            <a class="dropdown-item" href="{{path("app_bp")}}">Boxe PRO</a>
+            <a class="dropdown-item" href="{{path("app_aeroboxe")}}">Aeroboxe</a>
+          
+          </div>
+        </li>
+      </ul>
+     
+    </div>
+  </div>
+</nav>
+    {% endblock %}
+        {% block body %}{% endblock %}
+ {% block section %}{% endblock %}
+ {% block article %}{% endblock %}
+  {% block aside %}{% endblock %}
+
+{% block footer %}
+  <footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-col">
+        <h4>AMIENS BOXING CLUB</h4>
+        <ul>
+          <li>GYMNASE de la Veilleire</li>
+          <li>salle Jacques Bataille</li>
+          <li>rue du Moulin Neuf</li>
+          <li>80080 AMIENS</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Partenaires</h4>
+        <ul>
+          <li>Es Demenegament</li>
+          <li>Steack Plus</li>
+          <li>Ville d'Amiens</li>
+          <li>Amiens Métropole</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACT</h4>
+        <ul>
+          <li>téléphone: 0626259768</li>
+          <li>mail: jeromefouache@msn.com</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% endblock %}
+</body>        
+        
+</html>

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AMIENSBC   Boxe educative{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row align-items-start ">
+        {% for forme in formes %}
+<div class="card mb-3 " with="auto">
+     <div class="card-body"> <div class="row align-items-center">
+    
+        <img src="/image/{{forme.photo}}" class="img-fluid rounded-start" alt="...">
+       <div class="col-4" ></div>
+   
+      
+          <h5 class="card-title">{{ forme.nom }}</h5>
+          <p class="card-text">{{ forme.description }}</p>
+          <p class="card-text">Prix :{{ forme.prix }}€</p>
+          <button type="button" class="btn btn-light" li class="nav-item">
+                    {# <a class="nav-link" href="{{path('cart_add'}}">prendre ma licence </a></button> #}
+                    {% if forme.prix > 0 %}
+					<a href="{{path('cart_add',{'id':forme.id})}}" class="btn btn-danger">
+                        Prendre ma licence
+                    </a> 
+                {% endif %}
+                {% if forme.prix < 0  %}
+                    <p class="text-warning">
+                        Temporairement en rupture de stock
+                    </p>
+                {% endif %}    
+      
+      </div>
+    </div>
+  </div> </div>
+
+    </div>
+{% endfor %}
+{% endblock %}
+
+

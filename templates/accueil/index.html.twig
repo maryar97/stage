@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ACCUEIL{% endblock %}
+
+{% block body %}
+
+<div class="bea">
+
+
+
+  <div class="card mb-3" style="width: 18rem;">
+    <div class="card-body">
+     <img src="image/23.png" alt="" width="100px">
+      <p class="card-text">presentation du bureau</p>
+      <a href="{{path("app_club")}}" class="btn btn-light">bureau</a>
+    </div>
+  </div>
+  
+  <div class="card text-center mb-3" style="width: 18rem;">
+    <div class="card-body">
+      <img src="image/24.png" alt="" width="100px">
+      <p class="card-text">information des heures d'ouverture</p>
+      <a href="{{path("app_horaire")}}" class="btn btn-light">horaire/tarif</a>
+    </div>
+  </div>
+  
+  <div class="card text-end" style="width: 18rem;">
+    <div class="card-body">
+      <img src="image/24.png" alt="" width="100px">
+      <p class="card-text">presentation des  activité proposé</p>
+      <a href="{{path("app_formedeboxe")}}" class="btn btn-light">forme de boxe</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AMIENSBC   aeroboxe{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row align-items-start ">
+        {% for forme3 in formes3 %}
+<div class="card mb-3 " with="auto">
+     <div class="card-body"> <div class="row align-items-center">
+    
+        <img src="/image/{{forme3.photo}}" class="img-fluid rounded-start" alt="...">
+       <div class="col-4" ></div>
+   
+      
+          <h5 class="card-title">{{ forme3.nom }}</h5>
+          <p class="card-text">{{ forme3.description }}</p>
+          <p class="card-text">Prix :{{ forme3.prix }}€</p>
+          <button type="button" class="btn btn-light" li class="nav-item">
+                    {# <a class="nav-link" href="{{path('cart_add'}}">prendre ma licence </a></button> #}
+                    {% if forme3.prix > 0 %}
+					<a href="{{path('cart_add',{'id':forme3.id})}}" class="btn btn-danger">
+                        Prendre ma licence
+                    </a> 
+                {% endif %}
+                {% if forme3.prix < 0  %}
+                    <p class="text-warning">
+                        Temporairement en rupture de stock
+                    </p>
+                {% endif %}    
+      
+      </div>
+    </div>
+  </div> </div>
+
+    </div>
+{% endfor %}
+{% endblock %}

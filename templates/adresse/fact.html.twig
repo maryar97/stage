@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adresse de facturation{% endblock %}
+
+{% block body %}
+    <h1>Créer une adresse de facturation</h1>
+
+    {{ include('adresse/_form.html.twig') }}
+
+    <a href="{{ path('app_adresse_index') }}">Retour à la liste</a>
+{% endblock %}

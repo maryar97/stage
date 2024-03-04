@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AMIENS BC  horaire{% endblock %}
+
+{% block body %}
+
+
+<div class="horaire text-color-white">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <H1>BOXE EDUCATIVE</H1>
+            <H2>BOXE LOISIR</H2>
+            <H6> DU LUNDI AU VENDREDI DE 18H À 19H30</H6>
+            <H5> MERCREDI 16H/18H samedi 10H/12H</H5>
+            <h6>tarif:150€</h6>
+
+            <img src="image/logoa.png" class="d-block w-10" alt="..."  width="700px"  >
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <H1>BOXE Amateur</H1>
+            <H5> DU LUNDI AU VENDREDI DE 19H30 À 21H00</H5>
+            <h6>tarif:150€</h6>
+            <img src="image/logob.png" class="d-block w-10" alt="..." width="700px">
+          </div>
+          <div class="carousel-item">
+            <H1>BOXE PROFESSIONNELLE</H1>
+            <H5> DU LUNDI AU VENDREDI DE 19H30 À 21H00</H5>
+            <h6>tarif selon le groupe </h6>
+            <img src="image/logodc.png" class="d-block w-10" alt="..." width="700px">
+          </div>
+          <div class="carousel-item">
+            <H1>AEROBOXE</H1>
+            <H5> LUNDI 19H/21H  mercredi 19H/21H  SAMEDI 10H/12H</H5>
+            <h6>tarif:150€  une seance par semaine</h6>
+            <img src="image/logod.png"class="d-block w-10" alt="..." width="700px">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+</div>
+{% endblock %}

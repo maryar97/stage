@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Payment{% endblock %}
+
+{% block body %}
+
+   <div class="justify-content-center col-4">
+        <div class="card m-4">
+            <div class="card-body">
+                {% for message in app.flashes('success') %}
+                    <div style="color: green;
+                                border: 2px green solid;
+                                text-align: center;
+                                padding: 5px;margin-bottom: 10px;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% set total = 0 %}
+                {% for formedeboxe in recapCart %}
+                    {% set total = total + formedeboxe.formedeboxe.prix %}
+                {% endfor %}
+
+                <form id='checkout-form' method='post'
+                      action="{{ path('app_stripe_charge', {'reference': commande.reference}) }}">
+                    <input type='hidden' name='paymentMethod' id='payment-method-id'>
+
+                    <label for="card-element" class="mb-5">Paiement de la commande</label>
+                    <br>
+                    <div id="card-element" class="form-control"></div>
+                    <div id="card-errors" role="alert"></div>
+
+                    <button id='pay-btn' class="btn btn-primary mt-3" type="button"
+                            style="margin-top: 20px; width: 100%;padding: 7px;" onclick="handlePayment()">Payer {{ total }}€
+                    </button>
+                </form> <!-- Fermez la balise form correctement ici -->
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe("{{stripe_key}}");
+        var elements = stripe.elements();
+        var cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        var cardErrors = document.getElementById('card-errors');
+
+        function handlePayment() {
+            stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+            }).then(function (result) {
+                if (result.error) {
+                    // Gestion des erreurs de validation de la carte
+                    cardErrors.textContent = result.error.message;
+                } else {
+                    // Ajoutez l'identifiant du moyen de paiement au formulaire
+                    document.getElementById('payment-method-id').value = result.paymentMethod.id;
+
+                    // Soumettez le formulaire pour effectuer le paiement
+                    document.getElementById('checkout-form').submit();
+                }
+            });
+        }
+    </script>
+
+{% endblock %}
